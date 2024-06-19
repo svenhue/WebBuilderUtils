@@ -3,7 +3,7 @@ import { AuthenticationService } from "./AuthenticationService"
 
 export function AuthenticationMiddleware(to, from) {
 
-    console.log(to)
+    
     return;
     if(to.meta?.auth?.requiresAuth == true){
         const service = BaseServiceProvider.Service<AuthenticationService>("AuthenticationService") as AuthenticationService;

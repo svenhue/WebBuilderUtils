@@ -18,6 +18,7 @@ export class Page{
         this.router = router;
         this.templateRef = templateRef;
         this.resolver = resolver;
+       
         this.setup();
         
     }
@@ -27,10 +28,11 @@ export class Page{
         const pageContext = service.NewContext(contextid, ContextLevel.State)
         this.config.value.contextid = pageContext.contextid
 
-        this.AddClientSideRoutes(this.config.value.views)
+        //this.AddClientSideRoutes(this.config.value.children)
     }
 
     private AddClientSideRoutes(views: Array<IViewConfiguration>){
+        
         if(views == undefined){
             return;
         }

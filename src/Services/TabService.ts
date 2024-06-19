@@ -12,6 +12,7 @@ export class TabService{
     constructor(){
         this.tabs = ref<Array<{name: string, title: string}>>([])
         this.activeTab  = ref({name: "", title: ""});
+        console.log(123)
     }
     
     public ActiveTab: ComputedRef<{name: string, title: string}> = computed(() => {
@@ -28,10 +29,12 @@ export class TabService{
     }
 
     public OpenTab(tab: object){
+        console.log("Opening tab", tab)
         if(this.navigationHandler == undefined){
             throw new Error("Navigation handler not set")
         }
         this.navigationHandler(tab);
+       
         this.activeTab.value = tab;
     }
 
@@ -41,7 +44,7 @@ export class TabService{
         })
     }
 
-    public SetNavigationHandler(navigationHandler: (tab: object) => void){
+    public SetNavigationHandler(navigationHandler: (tab: object) => void){      
         this.navigationHandler = navigationHandler;
     }
 }
