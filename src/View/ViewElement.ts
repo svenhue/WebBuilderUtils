@@ -5,13 +5,13 @@ import { IViewElement } from './IViewElement.ts';
 import { ViewConfiguration } from './ViewConfiguration.ts';
 import { MaybeRefOrGetter, toValue, watch } from 'vue';
 import { IUIEvent } from '../ClientActions/EventHandler/IUIEvent.ts';
-import { IEventHandler } from 'src/ClientActions/EventHandler/IEventHandler.ts';
+import { IEventHandler } from '../ClientActions/EventHandler/IEventHandler.ts';
 import { EventBus } from '../ClientActions/EventHandler/EventBus.ts';
 import { UIActionFactory } from '../ClientActions/UIActionFactory.ts';
-import { GlobalStateProvider } from 'src/Data/StateManagement/GlobalStateProvider.ts';
+import { GlobalStateProvider } from '../Data/StateManagement/GlobalStateProvider.ts';
 import { type IExecutionContextProvider } from '../CodeExecution/IExecutionContextProvider.ts';
 import { ValueResolver } from '../CodeExecution/ValueResolver.ts';
-import { IUIAction } from 'src/ClientActions/IUIAction.js';
+import { IUIAction } from '../ClientActions/IUIAction.js';
 import { ObjectValueResolver } from '../CodeExecution/ObjectValueResolver.js';
 import { IViewConfiguration } from './IViewConfiguration.js';
 

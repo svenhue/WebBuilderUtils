@@ -8,7 +8,7 @@ import { IBOInstance } from "../IBOInstance.js";
 import { StateChangeTypes } from "../Repositorys/StateChangeTypes.js";
 import { UtilityServices } from "../../Services/UtilityServices.js";
 import { SimpleNameValueCollection } from '../SimpleNameValueCollection.js';
-import { BOService } from 'src/Services/BOService.js';
+import { BOService } from '../Services/BOService.js';
 import { Expression } from 'typescript';
 import { HTTPClientService } from '../../HTTP/HTTPClientService.js';
 import { BaseServiceProvider } from '../../Services/Provider/BaseServiceProvider.js';

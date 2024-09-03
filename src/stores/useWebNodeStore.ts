@@ -14,9 +14,9 @@ import {
   updateValue,
   updateValues,
   createElementWithIdent
-} from 'src/stores/storeUtils';
+} from '../stores/storeUtils';
 import { searchObjectInNestedArray } from '../composables/searchObjectInNestedArray';
-import { IViewConfiguration } from 'src/View/IViewConfiguration';
+import { IViewConfiguration } from '../View/IViewConfiguration';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export const useWebNodeStore = defineStore('webnodecontext', () => {
   const webnodecontexts = ref(Array<WebNodeContextContainer>());

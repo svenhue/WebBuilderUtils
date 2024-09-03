@@ -31,7 +31,7 @@ import { WorkflowEngine } from '../../ClientActions/Workflow/WorkflowEngine.js';
 import { CallServiceAction } from '../../ClientActions/Actions/CallService/CallServiceAction.js';
 import { GlobalDataSynchronizer } from '../../Data/DataAdapters/GlobalDataSynchronizer.js';
 import { RestrictedServiceProvider } from '../../Services/Provider/RestrictedServiceProvider.js';
-import { IHTTPClientService } from 'src/HTTP/IHTTPClientService.js';
+import { IHTTPClientService } from '../../HTTP/IHTTPClientService.js';
 
 export class DefaultApplicationServiceCollection implements IStartup{
 

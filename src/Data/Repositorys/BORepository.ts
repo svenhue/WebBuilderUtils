@@ -13,7 +13,7 @@ import { SimpleNameValueCollection } from '../SimpleNameValueCollection.js';
 import { set } from 'lodash-es'
 import { Expression } from 'typescript';
 import { DataContextManager } from '../StateManagement/DataContextManager.js';
-import { IDataContainer } from 'src/Container/IDataContainer.js';
+import { IDataContainer } from '../Container/IDataContainer.js';
 import { Pinia } from 'pinia';
 
 @injectable()

@@ -59,7 +59,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useModellingStore } from '../stores/useModellingStore';
-import { IViewElement } from 'src/View/IViewElement.js';
+import { IViewElement } from '../View/IViewElement.js';
 
 const props = defineProps({
     focussedElementId: {

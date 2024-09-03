@@ -16,7 +16,7 @@ import { IRequestConfig } from "./src/HTTP/IRequestConfig";
 import { LoggingService } from "./src/Logging/LoggingService";
 
 
-
+import { AuthenticationMiddleware } from './src/Services/Auth/AuthenticationMiddleware.js';   
 
 
 import { ITransactional } from "./src/Transaction/ITransactional";
@@ -121,6 +121,7 @@ declare module 'alphautils'{
 
 
 export {
+    AuthenticationMiddleware,
     CSSProvider,
     DataContextManager,
     EventBus,

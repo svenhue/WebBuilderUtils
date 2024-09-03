@@ -9,7 +9,7 @@ import { ICallAbleServiceAction } from "../../ClientActions/Actions/CallService/
 import { IApplicationConfiguration } from "src/Application/IApplicationConfiguration.js";
 
 @injectable()
-export class AuthenticationService implements ICallAbleServiceAction{
+class AuthenticationService implements ICallAbleServiceAction{
 
     
     private token = undefined;
@@ -86,3 +86,5 @@ export class AuthenticationService implements ICallAbleServiceAction{
         return result.data['access_token']
     }
 }
+
+export { AuthenticationService }

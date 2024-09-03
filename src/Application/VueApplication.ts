@@ -1,11 +1,8 @@
-
 //@ts-nocheck
 import { App, createApp, defineComponent, inject } from 'vue';
 import { Router, createRouter, RouterOptions, RouteRecordRaw, createWebHistory } from 'vue-router';
 import { waitForElm } from '../composables/useWaitforElement.js';
 import { Quasar } from 'quasar';
-import { IApplicationComponentFactory } from './IApplicationComponentFactory.js';
-
 import { Container} from 'inversify';
 import { BODeclarationContainer } from '../Container/BODeclarationContainer.js';
 import { BusinessObject } from '../Data/BusinessObject.js';
@@ -22,11 +19,11 @@ import { IExternalNetworkConfiguration } from '../HTTP/IExternalNetworkConfigura
 import { HTTPClientService } from '../HTTP/HTTPClientService.js';
 import { ContextLevel } from '../Data/StateManagement/ContextLevel.js';
 import { Pinia } from 'pinia';
-import { IViewConfiguration } from 'src/View/IViewConfiguration.js';
-import { IPageConfiguration } from 'src/View/IPageConfiguration.js';
+import { IViewConfiguration } from '../View/IViewConfiguration.js';
+import { IPageConfiguration } from '../View/IPageConfiguration.js';
 import { ApplicationDeploymentModes } from './ApplicationDeploymentModes.js';
-import { IHTTPClientService } from 'src/HTTP/IHTTPClientService.js';
-import { Screen } from 'src/Models/Device/Screen.js';
+import { IHTTPClientService } from '../HTTP/IHTTPClientService.js';
+import { Screen } from '../Models/Device/Screen.js';
 
 
 export class VueApplication implements IApplication{
@@ -46,22 +43,23 @@ export class VueApplication implements IApplication{
 
     constructor(
         config: IApplicationConfiguration,
-        factory?: IApplicationComponentFactory,
+        factory?: undefined, // todo delete this
         app?: App,
         router?: Router,
         settings?: ApplicationSettings,
         pinia?: Pinia,
         resolver: {resolveComponent: (view: IViewConfiguration) => Promise}){
-          
+   
         this.config = config;
         this.factory = factory;
         this.settings = settings;
         this.pinia = pinia
         this.resolver = resolver
+
         if(app != undefined){
             this.rootApp = app;
         }
-        
+       
         if(this.config.deploymentMode == ApplicationDeploymentModes.spaclient){
             
             if(router != undefined){
@@ -73,8 +71,6 @@ export class VueApplication implements IApplication{
         if(this.pinia == undefined){
             throw new Error('Pinia not found')
         }
-      
-        
     }
     private RegisterModule(module: IApplicationModule){
         if(module.middleware != null && module.middleware != undefined && module.middleware.length > 0){
@@ -138,8 +134,6 @@ export class VueApplication implements IApplication{
     }
     public setup(): VueApplication{
 
-        
-
         this.CreateDIContainer()
         
         if(this.config.modules != null && this.config.modules != undefined && this.config.modules.length > 0){
@@ -161,8 +155,6 @@ export class VueApplication implements IApplication{
                 this.AddMiddleware(middleware)
             }
         }
-
-        
         return this;
     }
     
@@ -220,12 +212,14 @@ export class VueApplication implements IApplication{
         
     }
     public build(): VueApplication{
-         const   contextManager = this.container.get<DataContextManager>('DataContextManager')
+        const contextManager = this.container.get<DataContextManager>('DataContextManager')
         if(contextManager == undefined){
             throw new Error('DataContextManager not found')
         }
+
         const rootManager = this.container?.parent?.get<DataContextManager>('DataContextManager')
         let rootContext;
+        
         if(this.config.mode == 'shadow'){
             
             rootContext = contextManager.UpgradeContextLevel(this.config.contextid, ContextLevel.Application, rootManager).contextid
@@ -238,6 +232,7 @@ export class VueApplication implements IApplication{
         this.rootApp.provide('iotcontainer_'+ rootContext, this.container)
 
         const httpService = this.container.get<IHTTPClientService>('HTTPClientService') as HTTPClientService        
+
         if(this.config?.networkConfigs != undefined){
             for(const networkConfig of this.config?.networkConfigs){
                 httpService.networks.push(networkConfig)
@@ -248,13 +243,15 @@ export class VueApplication implements IApplication{
                 startup.InitializeServices(this.container, this.config, this.store)
             }
         }
-        this.BindServicesToApp()
 
-        this.rootApp.provide('app_'+ rootContext)
+        this.BindServicesToApp();
+
+        this.rootApp.provide('app_' + rootContext)
         return this
     }
 
     private BindServicesToApp(){
+        //todo for what needed?
         this.screen = this.container.get<Screen>('Screen', undefined)
     }
 }

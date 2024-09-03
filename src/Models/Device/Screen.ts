@@ -7,47 +7,46 @@ import { Ref, ref } from "vue";
 @injectable()
 export class Screen{
 
-    quasarPlatformDetect = Platform
+    quasarPlatformDetect: Platform
     
     screenWidth: Ref<number|string> = ref(0);
     screenHeight: Ref<number|string> = ref(0);
 
-    subscribers: Array<(screenWidth: number, screenHeight: number) => void> = []
+    subscribers: Array<(screenWidth: number | String, screenHeight: number | String) => void> = []
 
     constructor(
 
     ){
+        // check if this runs on server side
+        if(document != undefined && window != undefined){
+            this.screenWidth.value = document.documentElement.clientWidth
+            this.screenHeight.value = document.documentElement.clientHeight
 
+            if(!this.screenWidth || !this.screenHeight){
+                this.SetScreenSize()
+            }
 
-        this.screenWidth.value = document.documentElement.clientWidth
-        this.screenHeight.value = document.documentElement.clientHeight
-
-        if(!this.screenWidth || !this.screenHeight){
-            this.SetScreenSize()
+            window.addEventListener('resize', () => {
+                this.SetScreenSize()
+            })
         }
-
-        window.addEventListener('resize', () => {
-            this.SetScreenSize()
-        })
+        
     }
     public ChangeScreenSize(screenWidth: number | string, screenHeight: number | string){
         //we need numeric values
-        
+       
         if(typeof screenWidth == 'string'){
-
             if(screenWidth.includes('"')){
-                screenWidth = screenWidth.replace('"', '')    
+                screenWidth = screenWidth.replaceAll('"', '')    
             }
-            screenWidth = parseInt(screenWidth.replace('px', ''))
-        }
-        if(typeof screenHeight == 'string'){
-            
-            if(screenHeight.includes('"')){
-                screenHeight = screenHeight.replace('"', '')    
-            }
-            screenHeight = parseInt(screenHeight.replace('px', ''))
         }
 
+        if(typeof screenHeight == 'string'){
+            if(screenHeight.includes('"')){
+                screenHeight = screenHeight.replaceAll('"', '')    
+            }
+        }
+        console.log(screenWidth, 112321333)
         this.screenWidth.value = screenWidth
         this.screenHeight.value = screenHeight
         this.NotifyScreenChanged()
@@ -59,7 +58,7 @@ export class Screen{
         }
     }
    
-    public Subscribe(callback: (screenWidth: number, screenHeight: number) => void){
+    public Subscribe(callback: (screenWidth: String | number, screenHeight: String | number) => void){
         this.subscribers.push(callback)
     }
 

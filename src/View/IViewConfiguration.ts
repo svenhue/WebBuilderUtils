@@ -1,5 +1,5 @@
 import { IViewDataConfiguration } from "./ViewDataConfiguration.js";
-import { IParameterBinding } from "../InteractionFlows/IParameterBinding.js";
+//import { IParameterBinding } from "../InteractionFlows/IParameterBinding.js";
 import { ViewRoles } from "./ViewRoles.js";
 import { IBOInstance } from "../Data/IBOInstance.js";
 import { IViewInteraction } from "./Interaction/IViewInteraction.js";
@@ -38,7 +38,7 @@ export interface IViewConfiguration extends IBOInstance {
     role?: ViewRoles
     parentId?: number
     dataConfig?: IViewDataConfiguration  // todo remove this
-    parameterBindings?: Array<IParameterBinding>; // todo remove this
+    //parameterBindings?: Array<IParameterBinding>; // todo remove this
     children? : Array<IViewConfiguration>
 
     //remove this

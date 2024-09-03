@@ -8,7 +8,7 @@ import { TransactionCallModes } from './TransactionCallModes.js';
 
 
 @injectable()
-export class TransactionService implements ITransactionService{
+class TransactionService implements ITransactionService{
 
     transaction: Transaction;
     bindings: Array<(transaction: Transaction) => void> = new Array<(transaction: Transaction) => void>();
@@ -52,3 +52,5 @@ export class TransactionService implements ITransactionService{
     }
 
 }
+
+export { TransactionService}

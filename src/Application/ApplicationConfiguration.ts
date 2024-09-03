@@ -7,6 +7,7 @@ import { DataTypes } from '../Data/DataTypes.js';
 import { BOProperty } from '../Data/BOProperty.js';
 import { ApplicationDeploymentModes } from './ApplicationDeploymentModes.js';
 import { IApplicationConfiguration } from './IApplicationConfiguration.js';
+import { IInternationalization } from './Localization/IInternationalization.js';
 
 export class ApplicationConfiguration extends BusinessObject implements IApplicationConfiguration{
     
@@ -19,6 +20,7 @@ export class ApplicationConfiguration extends BusinessObject implements IApplica
     modules: Array<ApplicationModule>
     isProduction: boolean;
     deploymentMode: ApplicationDeploymentModes
+    internationalization: IInternationalization
 
     constructor(
 

@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { SolutionObject } from 'src/Data/SolutionObject.js';
+import { SolutionObject } from '../Data/SolutionObject.js';
 import { defineStore } from 'pinia';
 
 export const useCreatorStore = defineStore('creator',{
