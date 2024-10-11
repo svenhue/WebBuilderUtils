@@ -5,6 +5,7 @@ import { IUIAction } from "../IUIAction.js";
 
 export interface IEventHandler{
 
+    identifier: string;
     handleEvent(sender:IEventInvoker, event: IUIEvent, args: SimpleNameValueCollection): void;
     GetActions(): Array<IUIAction>;
 }

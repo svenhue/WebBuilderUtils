@@ -20,7 +20,6 @@ import { EventBus } from '../../ClientActions/EventHandler/EventBus.js';
 import { GlobalStateProvider } from '../../Data/StateManagement/GlobalStateProvider.js';
 import { HTTPClientService } from '../../HTTP/HTTPClientService.js';
 import { ControlComponentAction } from '../../ClientActions/Actions/ControlComponent/ControlComponentAction.js';
-import { CallLocalMethodAction } from '../../ClientActions/Actions/CallLocalMethod/CallLocalMethodAction.js';
 import { IExecutionContextProvider } from '../../CodeExecution/IExecutionContextProvider.js';
 import { CodeContextProvider } from '../../CodeExecution/CodeContextProvider.js';
 import { ApplicationModes } from '../ApplicationModes.js';
@@ -87,7 +86,6 @@ export class DefaultApplicationServiceCollection implements IStartup{
                 container.bind<SetValueAction>('SetValueAction').to(SetValueAction).inSingletonScope(),
                 container.bind<SetValuesAction>('SetValuesAction').to(SetValuesAction).inSingletonScope(),
                 container.bind<ControlComponentAction>('ControlComponentAction').to(ControlComponentAction).inSingletonScope(),
-                container.bind<CallLocalMethodAction>('CallLocalMethodAction').to(CallLocalMethodAction).inSingletonScope(),
                 container.bind<CallServiceAction>('CallServiceAction').to(CallServiceAction).inSingletonScope(),
 
         

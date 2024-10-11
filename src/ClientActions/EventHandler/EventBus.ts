@@ -10,7 +10,7 @@ import { waitForElm } from '../../composables/useWaitforElement.js';
 @injectable()
 export class EventBus{
 
-    private events: Array<IEventBusEntry>;
+    public events: Array<IEventBusEntry>;
     constructor(){
         this.events = new Array<IEventBusEntry>();
     }
@@ -58,6 +58,7 @@ export class EventBus{
 
     private RegisterDOMEvent(entry: IEventBusEntry, args: SimpleNameValueCollection){
         console.log(entry)
+        
         waitForElm(`[data-element='${entry.event.targetElement}']`).then((el) => {
             console.log("new", entry)
             const controller = new AbortController();            

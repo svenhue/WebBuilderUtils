@@ -1,15 +1,16 @@
 import { IValidationRule } from './IValidationRule.js';
 import { ValueResolver } from '../../../CodeExecution/ValueResolver.js';
 import { IExecutionContextProvider } from '../../../CodeExecution/IExecutionContextProvider.js';
+import { IValueValidationViewConfiguration } from 'src/View/ViewExtensions/ValueValidationViewConfiguration.js';
 
 export function validateRules
     (
         contextProvider: IExecutionContextProvider, 
-        contextid: number, 
-        rules: Array<IValidationRule>
+        contextid: number,
+        component: IValueValidationViewConfiguration
     ) {
 
-    if(rules == undefined || rules.length == 0){
+    if(component.properties?.rules == undefined || component.properties?.rules.length == 0){
         return []
     }
     // rules.forEach(rule => {
@@ -25,7 +26,7 @@ export function validateRules
     //         }
     //     }
     // )});
-    return rules.map(rule => {
-        return () => ValueResolver(contextProvider, contextid, rule.rule) || rule.errorMessage;
+    return component.properties?.rules.map(rule => {
+        return () => ValueResolver(contextProvider, contextid, rule.rule, component) || rule.errorMessage;
     })
 }

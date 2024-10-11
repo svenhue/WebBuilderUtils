@@ -26,4 +26,5 @@ export interface IApplicationConfiguration{
     authentication?: IAuthenticationConfiguration
     initialize?(): void;
     internationalization: IInternationalization
+    ssr: boolean;
 }

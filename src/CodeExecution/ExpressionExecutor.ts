@@ -80,7 +80,7 @@ export function ExpressionExecutor(contextProvider: IExecutionContextProvider, c
 
         expression.match(/(?<=component\.)[\w-]+(?=(\.|$|\s))/g)?.forEach((match) => {
             const indexOfComponentNameEndWithDot = expression.indexOf('.expression') + 10;
-            const componentX = Function('component', 'colors', 'components', 'variables','app', 'return ' + 'app')(component, colors, components, variables, app)
+            const componentX = Function('component', 'colors', 'components', 'variables','app', 'return ' + 'component')(component, colors, components, variables, app)
             let valuePath = ''
             let result = componentX;
             for (let i = indexOfComponentNameEndWithDot; i < expression.length; i++) {

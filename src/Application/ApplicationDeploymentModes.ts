@@ -1,8 +1,9 @@
 export enum ApplicationDeploymentModes{
-    spassr = 'spassr',
-    spaclient = 'spaclient',
-    mpahybrid = 'mpahybrid',
-    mpassr = 'mpassr',
-    electron = 'electron',
-    cordova = 'cordova',
+  
+    'spaclient' = 'spaclient',
+    'mpahybrid' = 'mpahybrid',
+    'mpassr' = 'mpassr',
+    'electron' = 'electron',
+    'cordova' = 'cordova',
+    'staticSites' = 'staticSites'
 }

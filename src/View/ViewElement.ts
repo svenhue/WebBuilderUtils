@@ -24,10 +24,11 @@ export class ViewElement extends BaseView implements IViewElement, IEventHandler
     private eventBus: EventBus;
     private plobalStateProvider?: GlobalStateProvider
 
+    public identifier: string;
     constructor(config: MaybeRefOrGetter<ViewConfiguration>) {
         super(config);
         this.actionFactory = this.GetService<UIActionFactory>('UIActionFactory');
-        
+        this.identifier = toValue(config.publicIdentifier)
   
     }
 
@@ -35,8 +36,8 @@ export class ViewElement extends BaseView implements IViewElement, IEventHandler
         console.log('handleEvent', event)
         for(const action of event.actions){
             const actionInstance = this.GetOrCreateActionInstance(action);
-            console.log(actionInstance)
-            actionInstance.execute(action);
+      
+            actionInstance.execute(action, sender);
         }
         
     }

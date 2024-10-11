@@ -1,6 +1,6 @@
 {
-    "name": "alphautils",
-    "version": "1.0.5",
+    "name": "webbuilderalphautils",
+    "version": "1.0.7",
     "type": "module",
     "main": "index.ts",
     "types": "./index.d.ts",

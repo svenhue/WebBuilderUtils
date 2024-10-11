@@ -57,7 +57,7 @@ import { type IUIEvent } from "./src/ClientActions/EventHandler/IUIEvent.js";
 import { UIEvents } from "./src/ClientActions/EventHandler/UIEvents.js";
 import { UIEventTypes } from "./src/ClientActions/EventHandler/UIEventTypes.js";
 import { UIAction } from "./src/ClientActions/UIAction.js";
-import { UIActionTargetTypes } from "./src/ClientActions/UIActionTargetTypes.js";
+
 import { UIActionFactory } from "./src/ClientActions/UIActionFactory.js";
 import { UIActionTypes } from "./src/ClientActions/UIActionTypes.js";
 import { type IActionInput } from "./src/ClientActions/IActionInput.js";
@@ -138,7 +138,6 @@ import { DataTypes } from './src/Data/DataTypes.js';
 import { DefaultApplicationServiceCollection } from './src/Application/ServiceCollections/DefaultApplicationServiceCollection.js';
 import { type IPageConfiguration } from './src/View/IPageConfiguration.js';
 import { BaseServiceProvider } from './src/Services/Provider/BaseServiceProvider.js'
-import { CallLocalMethodAction } from './src/ClientActions/Actions/CallLocalMethod/CallLocalMethodAction.js';
 import { ControlComponentAction } from './src/ClientActions/Actions/ControlComponent/ControlComponentAction.js';
 import { GlobalStateProvider } from './src/Data/StateManagement/GlobalStateProvider.js';
 import { EventBus } from './src/ClientActions/EventHandler/EventBus.js';
@@ -188,7 +187,7 @@ export {
     IDataContainer,
     ControlComponentAction,
     GlobalStateProvider,
-    CallLocalMethodAction,
+
     EventBus,
     BaseServiceProvider,
     IPageConfiguration,
@@ -251,7 +250,7 @@ export {
     type IUIEvent,
      UIEvents,
     UIAction,
-    UIActionTargetTypes,
+ 
     UIActionFactory,
     UIActionTypes,
     type  IActionInput,

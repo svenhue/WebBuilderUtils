@@ -29,6 +29,8 @@ export class Page{
         this.config.value.contextid = pageContext.contextid
 
         //this.AddClientSideRoutes(this.config.value.children)
+
+        console.log("setup from page", service, contextid, pageContext, this.config.value)
     }
 
     private AddClientSideRoutes(views: Array<IViewConfiguration>){

@@ -2,32 +2,33 @@
 import { inject, injectable } from "inversify";
 import { GlobalStateProvider } from "../../../Data/StateManagement/GlobalStateProvider.js";
 import { IControlComponentActionConfig } from "./IControlComponentActionConfig.js";
+import { IEventInvoker } from "../ClientActions/EventHandler/IEventInvoker.js";
+import { IEventReceiver } from "../ClientActions/EventHandler/IEventReceiver.js";
+import { EventBus } from "../EventHandler/EventBus.js";
 
 
 @injectable()
 export class ControlComponentAction {
     
-    private stateProvider: GlobalStateProvider;
+    private eventBus: EventBus
+
     constructor(
-        @inject("GlobalStateProvider") stateProvier: GlobalStateProvider,
+  @inject('EventBus') eventBus
         
     ){
-      
-        this.stateProvider = stateProvier;
+      this.eventBus = eventBus
+       
     }
     override execute(config: IControlComponentActionConfig){
         
         this.config = config;
-        const componentState = this.stateProvider.viewContexts.find(vc => vc.viewId == this.config.targetElement)
-        console.log(config, componentState)
-        if(componentState == undefined){
-            throw new Error(`Component ${this.config.targetElement} not found`)
-        }
-        const method = componentState.localActions?.find(a => a.methodName == this.config.methodName)
-        if(method == undefined){
-            throw new Error(`Method ${this.config.methodName} not found`)
+        console.log(config)
+        const receiver = this.eventBus.events.find(e => e.handler?.identifier == config.targetlement)?.handler
+        console.log(receiver, this.eventBus.events)
+        if(typeof receiver[config.methodName] != 'function'){
+            throw new Error("NO function todo")
         }
 
-        method.function();
+        receiver[config.methodName]();
     }
 }

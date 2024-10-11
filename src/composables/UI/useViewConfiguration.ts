@@ -9,7 +9,6 @@ export function useViewConfiguration(contextid: number, viewIdentifier: number, 
     }
 
     const getter = inject('viewGetter_' + contextid ) as (viewId: number) => { view: MaybeRefOrGetter<IViewConfiguration>, children: MaybeRefOrGetter<Array<ViewConfiguration>>}
-    
     if(getter == undefined){
         throw new Error('ViewGetter not found')
     }

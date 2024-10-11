@@ -46,7 +46,6 @@ export class Screen{
                 screenHeight = screenHeight.replaceAll('"', '')    
             }
         }
-        console.log(screenWidth, 112321333)
         this.screenWidth.value = screenWidth
         this.screenHeight.value = screenHeight
         this.NotifyScreenChanged()

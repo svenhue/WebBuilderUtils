@@ -13,8 +13,7 @@ export class ValueValidationViewElement extends ViewElement{
 
     public ValidateRules(){
         const { contextProvider, contextid } = this.ProvideContext();
-
-        return validateRules(contextProvider, contextid, this.GetConfiguration().properties.rules);
+        return validateRules(contextProvider, contextid, this.GetConfiguration());
     }
 
 }
