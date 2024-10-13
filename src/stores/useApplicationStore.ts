@@ -9,7 +9,8 @@ export const useApplicationStore = defineStore('app',{
     state: () => ({
         user: {},
         boDeclarations:  new BODeclarationContainer(),
-        dataContexts: Array<number>()
+        dataContexts: Array<number>(),
+        devSettings: {}
     }),
     getters: {
 
