@@ -14,6 +14,7 @@ import { IHTTPClientService } from "./src/HTTP/IHTTPClientService";
 import { IRequestConfig } from "./src/HTTP/IRequestConfig";
 
 import { LoggingService } from "./src/Logging/LoggingService";
+import { ValueValidationViewElement } from './src/View/ViewExtensions/ValueValidationViewElement.js';
 
 
 import { AuthenticationMiddleware } from './src/Services/Auth/AuthenticationMiddleware.js';   
@@ -164,6 +165,7 @@ export {
     useViewConfiguration,
     UIActionEvent,
     ViewConfiguration,
+    ValueValidationViewElement,
 
     TabService,
     useSolutionService,
