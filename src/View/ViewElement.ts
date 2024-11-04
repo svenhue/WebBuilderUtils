@@ -33,7 +33,6 @@ export class ViewElement extends BaseView implements IViewElement, IEventHandler
     }
 
     public handleEvent(sender:IEventInvoker, event: IUIEvent){
-        console.log('handleEvent', event)
         for(const action of event.actions){
             const actionInstance = this.GetOrCreateActionInstance(action);
       
@@ -138,4 +137,7 @@ export class ViewElement extends BaseView implements IViewElement, IEventHandler
         return ObjectValueResolver(this.viewContextProvider, this.GetConfiguration().contextid, propertyValue);
     }
 
+    public GetChildrenIds(): Array<number> {
+        return this.GetConfiguration().children[0]?.value;
+    }
 }

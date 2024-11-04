@@ -32,7 +32,7 @@ import { IViewElement } from "./src/View/IViewElement";
 import { ViewElement } from "./src/View/ViewElement";
 
 
-import { BaseViewModel } from "./src/ViewModel/BaseViewModel";
+import { BaseViewModel } from "./src/ViewModel/BaseViewModel.js";
 import { IViewModel } from "./src/ViewModel/IViewModel";
 import { IViewModelUsageOptions } from "./src/ViewModel/IViewModelUsageOptions";
 

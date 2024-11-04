@@ -5,30 +5,24 @@ import { IControlComponentActionConfig } from "./IControlComponentActionConfig.j
 import { IEventInvoker } from "../ClientActions/EventHandler/IEventInvoker.js";
 import { IEventReceiver } from "../ClientActions/EventHandler/IEventReceiver.js";
 import { EventBus } from "../EventHandler/EventBus.js";
+import { IActionConfiguration } from "src/ClientActions/IActionConfiguration.js";
 
 
 @injectable()
 export class ControlComponentAction {
     
     private eventBus: EventBus
-
+    private globals: GlobalStateProvider;
     constructor(
-  @inject('EventBus') eventBus
+      @inject('EventBus') eventBus,
+      @inject('GlobalStateProvider') globalStateProvider: GlobalStateProvider
         
     ){
       this.eventBus = eventBus
+      this.globals = globalStateProvider;
        
     }
-    override execute(config: IControlComponentActionConfig){
-        
-        this.config = config;
-        console.log(config)
-        const receiver = this.eventBus.events.find(e => e.handler?.identifier == config.targetlement)?.handler
-        console.log(receiver, this.eventBus.events)
-        if(typeof receiver[config.methodName] != 'function'){
-            throw new Error("NO function todo")
-        }
-
-        receiver[config.methodName]();
+    override execute(config: IActionConfiguration){
+        this.globals.CallState(config.targetElement, config.methodName)
     }
 }

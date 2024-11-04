@@ -24,6 +24,7 @@ export class BORepository implements IRepository{
         private contextManager: DataContextManager;
         private BOIds: Array<number> = []
         private pinia : Pinia;
+
         constructor(
             @inject('DataContextManager') contextManager: DataContextManager,
             @inject('Pinia') pinia: Pinia   
@@ -151,7 +152,15 @@ export class BORepository implements IRepository{
                 
 
         }
-        private async Publish(id:number, value: IBOInstance | SimpleNameValueCollection, changeType: StateChangeTypes, contextid: number = null, optinalBoName?: string, oldValue?: IBOInstance, before: boolean = false){
+        private async Publish(
+                id:number, 
+                value: IBOInstance | SimpleNameValueCollection, 
+                changeType: StateChangeTypes, 
+                contextid: number = null, 
+                optinalBoName?: string, 
+                oldValue?: IBOInstance, 
+                before: boolean = false)
+                {
                 for(const subscriber of this.subscribers){
                         if(contextid == null ){
                                 if((value.boName == subscriber.options.boType.name || optinalBoName == subscriber.options.boType.name ) && !this.AdapterIsBOOwner(subscriber, value)){

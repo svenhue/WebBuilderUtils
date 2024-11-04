@@ -59,8 +59,13 @@ export class BaseViewModel {
           break;
       }
     }
-    
   }
+
+  public PatchStateUpdatePartial(viewId: number, values: KeyValuePair){
+    this.dataAdapter.UpdatePartial(viewId, new SimpleNameValueCollection([values]), this.sessioncontextid)
+  }
+
+
   public UseService<TService>(serviceName: string){
     const service = this.container.get<TService>(serviceName) as TService
     return service;
