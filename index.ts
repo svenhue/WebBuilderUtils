@@ -163,7 +163,11 @@ import { AuthenticationMechanism } from './src/Application/Authentication/Authen
 import { APITypes } from './src/Data/DataAdapters/APITypes.js';
 import { RestrictedServiceProvider} from './src/Services/Provider/RestrictedServiceProvider.js';
 import { ObjectValueResolver } from './src/CodeExecution/ObjectValueResolver.js';
+import {CodeExecutor} from './src/CodeExecution/CodeExecutor.js';
+import { type IExecutionContextProvider } from './src/CodeExecution/IExecutionContextProvider.js';
 export {
+    IExecutionContextProvider,
+    CodeExecutor,
     ObjectValueResolver,
     RestrictedServiceProvider,
     APITypes,

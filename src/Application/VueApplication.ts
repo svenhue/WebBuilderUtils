@@ -130,6 +130,7 @@ export class VueApplication implements IApplication{
         boContainer.AddBOTypes(this.boDeclarations)
         this.container.bind<BODeclarationContainer>('BODeclarationContainer').toConstantValue(boContainer)
         this.container.bind<ApplicationSettings>('ApplicationSettings').toConstantValue(this.settings)
+        
         return this;
     }
     public setup(): VueApplication{
@@ -143,7 +144,7 @@ export class VueApplication implements IApplication{
         }
 
         const defaultServiceCollection = new DefaultApplicationServiceCollection()
-        defaultServiceCollection.InitializeServices(this.container, this.config)
+        defaultServiceCollection.InitializeServices(this.container, this.config, this.pinia)
         
 
         if(this.config.mode == ApplicationModes.standalone){

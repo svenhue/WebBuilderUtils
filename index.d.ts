@@ -114,7 +114,8 @@ import { type IValueValidationViewConfiguration } from './src/View/ViewExtension
 import { type IValidationRule } from './src/View/Interaction/Validation/IValidationRule';
 import { DataContextManager } from './src/Data/StateManagement/DataContextManager';
 import {CSSProvider } from './src/Stylesheets/CSSProvider';
-
+import {CodeExecutor} from './src/CodeExecution/CodeExecutor.js';
+import { type IExecutionContextProvider } from './src/CodeExecution/IExecutionContextProvider.js';
 declare module 'alphautils'{
 
 }
@@ -122,6 +123,8 @@ declare module 'alphautils'{
 
 
 export {
+    CodeExecutor,
+    IExecutionContextProvider,
     AuthenticationMiddleware,
     CSSProvider,
     DataContextManager,

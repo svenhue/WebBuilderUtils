@@ -35,6 +35,11 @@ import { IHTTPClientService } from '../../HTTP/IHTTPClientService.js';
 export class DefaultApplicationServiceCollection implements IStartup{
 
     public InitializeServices(container: Container, config:  IApplicationConfiguration, pinia: Pinia){
+        
+        if(pinia == undefined){
+            throw new Error('pinia is undefined')
+        }
+        
         container.bind<IApplicationConfiguration>('ApplicationConfiguration').toConstantValue(config);
 
         let authConfig = config?.networkConfigs?.find(x => x.authentication != undefined)?.authentication;
@@ -54,7 +59,6 @@ export class DefaultApplicationServiceCollection implements IStartup{
                 //data federation
                container.bind<DataFederation>("DataFederation").toConstructor(DataFederation);
                container.bind<DataContextManager>("DataContextManager").to(DataContextManager).inSingletonScope();
-
                container.bind<Pinia>("Pinia").toConstantValue(pinia);
                 //repositorys
                container.bind<BORepository>('BORepository').to(BORepository).inSingletonScope();
@@ -94,7 +98,7 @@ export class DefaultApplicationServiceCollection implements IStartup{
                 container.bind<RestrictedServiceProvider>('RestrictedServiceProvider').to(RestrictedServiceProvider).inSingletonScope();
 
                 const authService = new AuthenticationService(container.get<IHTTPClientService>('HTTPClientService'), authConfig);
-        container.bind<AuthenticationService>("AuthenticationService").toConstantValue(authService);
+                container.bind<AuthenticationService>("AuthenticationService").toConstantValue(authService);
 
 
     }

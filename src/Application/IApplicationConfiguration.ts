@@ -8,6 +8,7 @@ import { IGlobalApplicationVariables } from './Variables/IGlobalApplicationVaria
 import { IExternalNetworkConfiguration } from '../HTTP/IExternalNetworkConfiguration.js';
 import { IAuthenticationConfiguration } from './Authentication/IAuthenticationConfiguration.js';
 import { IInternationalization } from './Localization/IInternationalization.js';
+import { ITask } from '../shared/tasks/ITask.js';
 
 export interface IApplicationConfiguration{
         
@@ -27,4 +28,7 @@ export interface IApplicationConfiguration{
     initialize?(): void;
     internationalization: IInternationalization
     ssr: boolean;
+    querys?: Array<ITask>
+    
+
 }

@@ -50,10 +50,11 @@ export class DataContextManager{
     public GetParentContext(context: IDataContext): IDataContext{
         return this.findContextById(context.parentId);
     }
+    //todo remove this non sense logic?
     public getApplicationContext(contextid: number): IDataContext{
         const context = this.findContextById(contextid);
-        
         if(context.contextLevel != undefined && context.contextLevel == ContextLevel.Application){
+            console.log("XXX", context)
             return context;
         }
         if(context.parentId == undefined && context.contextLevel == ContextLevel.Application){
@@ -63,7 +64,9 @@ export class DataContextManager{
         }
         return this.getApplicationContext(context.parentId);
     }
-
+    public GetRootContext(): IDataContext{
+        return this.rootContext;
+    }
     private findContextById(contextId: number): IDataContext | null {
         
         if(contextId == undefined){

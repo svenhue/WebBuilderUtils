@@ -75,7 +75,7 @@ export class DataAdapter implements IDataAdapter {
         this.repository.Subscribe(this)
     }
 
-    public Create(value: IBOInstance, contextid?: number){
+    public Create(value: IBOInstance, contextid?: number, addToHistory = true){
         if(value.id == undefined){
             this.boService.NewId(value)
         }
@@ -93,7 +93,7 @@ export class DataAdapter implements IDataAdapter {
 
 
         this.ownsIds.push(value.id)
-        return this.repository.Create(value as IBOInstance, this.options.persistLocalStorage, contextid)
+        return this.repository.Create(value as IBOInstance, this.options.persistLocalStorage, contextid, addToHistory)
     }
     public Find(boName: string, expression: Expression){
         return this.repository.Get(boName, expression)[0]
@@ -109,15 +109,15 @@ export class DataAdapter implements IDataAdapter {
     public GetAll(expression?: Expression){
         return this.repository.Get(this.options.boType.name, expression, this.options.contextId)
     }
-    public Update(id: number, newValue: IBOInstance, contextid?: number, oldValue?: IBOInstance){
+    public Update(id: number, newValue: IBOInstance, contextid?: number, oldValue?: IBOInstance, addToHistory = true){
         this.SetBoType(newValue)
-        return this.repository.Update(id, newValue, this.options.persistLocalStorage, contextid, oldValue)
+        return this.repository.Update(id, newValue, this.options.persistLocalStorage, contextid, oldValue, addToHistory)
     }
-    public Delete(value: IBOInstance, contextid?: number){
-        return this.repository.Delete(value, this.options.persistLocalStorage , contextid)
+    public Delete(value: IBOInstance, contextid?: number, addToHistory = true){
+        return this.repository.Delete(value, this.options.persistLocalStorage , contextid, addToHistory)
     }
-    public UpdatePartial(id: number, newValues: SimpleNameValueCollection, contextid?: number, optinalBoName?: string , oldValue?: IBOInstance){
-        return this.repository.UpdatePartial(id, newValues, this.options.persistLocalStorage, contextid, optinalBoName, oldValue)
+    public UpdatePartial(id: number, newValues: SimpleNameValueCollection, contextid?: number, optinalBoName?: string , oldValue?: IBOInstance, addToHistory = true){
+        return this.repository.UpdatePartial(id, newValues, this.options.persistLocalStorage, contextid, optinalBoName, oldValue, addToHistory)
     }
 
     private SetBoType(value: IBOInstance){
@@ -125,8 +125,12 @@ export class DataAdapter implements IDataAdapter {
             if(this.options.boType?.name == undefined){
                 throw new Error('No BO with id ' + value.id + ' cant be created because no BO Type is defined');
             }
-            value.boName = this.options.boType.name
+            value.boName = this.options?.boType?.name
         }
+    }
+
+    public CommitHistory(){
+        this.repository.CommitHistory(this.contextid ?? this.options.contextId)
     }
 
     

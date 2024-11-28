@@ -15,4 +15,8 @@ export interface IRepository{
         Publish(value: IBOInstance, changeType: StateChangeTypes)
         IsPublisher(subscriber: IDataAdapter, value: IBOInstance): boolean
         Subscribe(subscriber: IDataAdapter)
+
+        CommitHistory(contextid?: number)
+        CreateHistory(contextid: number)
+
 }

@@ -23,4 +23,6 @@ export interface IDataAdapter{
     Delete(value: IBOInstance, contextid?: number)
     UpdatePartial(id: number, newValues: SimpleNameValueCollection, contextid?: number, optinalBoName?: string, oldValue?: IBOInstance)
 
+    CommitHistory()
+
 }

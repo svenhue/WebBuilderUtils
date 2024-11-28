@@ -22,6 +22,7 @@ export class CodeContextProvider implements IExecutionContextProvider{
         @inject('Pinia') pinia: Pinia,
         @inject('VueApplication') app: VueApplication   
     ) {
+        
         this.vueApplication = app;
        this.contextManager = contextManager;
        this.store = useDataStore(pinia);
@@ -33,7 +34,7 @@ export class CodeContextProvider implements IExecutionContextProvider{
         }
         const components= {}
         const appContext = this.contextManager.findClosestContextById(contextid);
-        this.store.GetBosByContext('ViewConfiguration', contextid).forEach((x) => {
+        this.store.GetBosByContext('ViewConfiguration', contextid)?.forEach((x) => {
             components[x.publicidentifier] = x;
         })
 
@@ -52,5 +53,9 @@ export class CodeContextProvider implements IExecutionContextProvider{
             component: requestingComponent,
             app:this.vueApplication
         }
+    }
+
+    public GetContextAttributes(): Array<string> {
+        return ['components', 'variables', 'colors', 'component', 'app']
     }
 }
