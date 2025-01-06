@@ -5,7 +5,8 @@ import 'reflect-metadata'
 
 import { UtilityModule } from "./src/UtilityModule.js";
 
-
+import { type IPageHeader } from "./src/View/Page/IPageHeader.js";
+import { type IPageMeta } from "./src/View/Page/IPageMeta.js";
 
 import { DataSources } from "./src/Data/DataSources.js";
 import { KeyValuePair } from "./src/Data/KeyValuePair.js";
@@ -166,6 +167,8 @@ import { ObjectValueResolver } from './src/CodeExecution/ObjectValueResolver.js'
 import {CodeExecutor} from './src/CodeExecution/CodeExecutor.js';
 import { type IExecutionContextProvider } from './src/CodeExecution/IExecutionContextProvider.js';
 export {
+    IPageHeader,
+    IPageMeta, 
     IExecutionContextProvider,
     CodeExecutor,
     ObjectValueResolver,
