@@ -10,4 +10,5 @@ export interface IApplicationModule {
     networkConfigs: Array<IExternalNetworkConfiguration>
     InitializeServices(container: Container): void;
     workflows: Array<IWorkflowDescription | IClientWorkflow>
+    register(): void;
 }

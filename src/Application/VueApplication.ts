@@ -55,7 +55,7 @@ export class VueApplication implements IApplication{
         this.settings = settings;
         this.pinia = pinia
         this.resolver = resolver
-
+        this.vueRouter = router
         if(app != undefined){
             this.rootApp = app;
         }
@@ -179,15 +179,10 @@ export class VueApplication implements IApplication{
         }
         return routes;
     }
-    public addRoute(){
-        const route = {
-            path: component.route.path,
-            component: this.resolver.resolveComponent(component),
-            name: component.route.name,
-            children: component.views?.filter(v => v?.isRouteable == true)?.map(child => this.CreateRoute(child))
-        } as RouteRecordRaw
+    public addRoute(route: RouteRecordRaw){
         this.vueRouter.addRoute(route)
     }
+
     private CreateRoute(component: IPageConfiguration | IViewConfiguration): RouteRecordRaw{
         return {
             path: component.route.path,
